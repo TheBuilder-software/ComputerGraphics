@@ -4,7 +4,7 @@ CXXFLAGS?=-std=c++20 -Wall -pedantic -Werror -Wshadow -Wstrict-aliasing -Wstrict
 
 .PHONY: all msg clean fullclean
 
-all: msg main ray
+all: msg main ray grid
 
 msg:
 	@echo '--- C++11 ---'
@@ -13,6 +13,9 @@ main: main.cpp
 	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
 
 ray: ray.cpp
+	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
+
+grid: grid.cpp
 	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
 
 small: main.cpp
