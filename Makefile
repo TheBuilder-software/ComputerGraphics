@@ -4,7 +4,7 @@ CXXFLAGS?=-std=c++20 -Wall -pedantic -Werror -Wshadow -Wstrict-aliasing -Wstrict
 
 .PHONY: all msg clean fullclean
 
-all: msg main ray grid line cube
+all: msg main ray grid line cube life
 
 msg:
 	@echo '--- C++11 ---'
@@ -22,6 +22,9 @@ line: line.cpp
 	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
 
 cube: cube.cpp
+	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
+
+life: life.cpp
 	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
 
 small: main.cpp
