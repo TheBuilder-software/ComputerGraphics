@@ -1,8 +1,9 @@
 #include "screen.h"
-
+#include "math.h"
 bool isAlive(int game[][480], int x, int y)
 {
     int aliveNeighbors = 0;
+    
     if(x > 0 && game[x-1][y] == 1) // left
     {
         aliveNeighbors += 1;
@@ -48,6 +49,7 @@ bool isAlive(int game[][480], int x, int y)
     return false;     
 }
 
+
 int main(int argc, char* argv[])
 {
     G screen;
@@ -59,8 +61,18 @@ int main(int argc, char* argv[])
     {
         for(int k = 0; k < 480; k+=1)
         {
-            game[i][k] = rand() % 10 == 0;    
+            game[i][k] = 0;    
             swap[i][k] = 0;        
+        }
+    }
+
+    for(int i = 0; i < 640; i++)
+    {
+        float fi = (float)i/100;
+        for(int j = 1; j < 20; j++)
+        {
+            float s = sin(fi) * j + 200;
+            game[i][(int)s] = 1;
         }
     }
 
@@ -107,7 +119,7 @@ int main(int argc, char* argv[])
         }
 
         screen.update();
-        SDL_Delay(25);
+        SDL_Delay(20);
         screen.input();
         screen.clearpixels();
     }

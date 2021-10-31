@@ -24,7 +24,8 @@ class G {
        x = 0;
        y = 0;
        SDL_Init(SDL_INIT_VIDEO); 
-       SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer);
+       SDL_CreateWindowAndRenderer(640*2, 480*2, 0, &window, &renderer);
+       SDL_RenderSetScale(renderer,2,2);
     }
 
     void drawpixel(int xm, int ym) 
