@@ -5,6 +5,8 @@
 #include <vector>
 #include <tuple>
 
+#pragma once 
+
 using namespace std;
 
 class G {

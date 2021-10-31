@@ -1,66 +1,37 @@
 #include "screen.h"
+#include "drawing.h"
 #include "math.h"
 
- 
 
-// muh line function
-void line(G &screen, tuple<float,float,float> start, tuple<float,float,float> end)
+void square(G& screen, int position_x, int position_y, int size)
 {
-    // subtract one vector from another get distance
-    float s1 = get<0>(start);
-    float s2 = get<1>(start);
-    float s3 = get<2>(start);
-
-    float e1 = get<0>(end);
-    float e2 = get<1>(end);
-    float e3 = get<2>(end);
-
-    tuple<float,float,float> endsubstart = tuple<float,float,float>(e1-s1, e2-s2, e3-e3);
-
-    // get angle of the line (rise over run)
-
+    line(screen,tuple<int,int>(position_x,position_y),tuple<int,int>(position_x+size,position_y));
+    line(screen,tuple<int,int>(position_x,position_y+size),tuple<int,int>(position_x+size+1,position_y+size));
+    line(screen,tuple<int,int>(position_x,position_y),tuple<int,int>(position_x,position_y+size));
+    line(screen,tuple<int,int>(position_x+size,position_y),tuple<int,int>(position_x+size,position_y+size));
 
 }
-// muh rotation function
-
 
 int main(int argc, char* argv[])
 {
-
-    vector<tuple<float,float,float>> cube;
-    cube.push_back(tuple<float,float,float>(1,1,1)); //  
-    cube.push_back(tuple<float,float,float>(2,1,2)); // 
-    cube.push_back(tuple<float,float,float>(1,2,1)); // 
-    cube.push_back(tuple<float,float,float>(2,1,1)); // 
-
     G screen;
-    float rad = 0;
-    float a[2] = {0.0,0.5};
-    float height = 55;
-    float width = 55;
-    
-    while(true) {
-        for(int j = 0; j < 640; j+=width ) 
-            for(int k = 0; k < 480; k+=height) 
-                for(int i = 0; i < 55; i++) {
-                    
-                    int x = (int)(a[0]*i) + j;
-                    int y = (int)(a[1]*i) + k;
-                    screen.drawpixel(x,y);      
-                }
-        rad+=0.01;
-        a[0] = sin(rad);
-        a[1] = cos(rad);
 
-        screen.update(); 
-        screen.input();
-        screen.clearpixels();
-        
-        SDL_Delay(16);
-        
+    for(int i = 100; i < 640; i+=90)
+    {
+        for(int k = 75; k < 480; k+=96)
+        {
+            for(int j = 80; j > 1; j-=10) 
+            {
+                square(screen,i-(j/2),k-(j/2),j);
+                screen.update();
+                SDL_Delay(50);
+                screen.input();
+            }
+        }
     }
-        
-    
+    SDL_Delay(1000);
+    screen.clearpixels();
 
     return 0;
 }
+
