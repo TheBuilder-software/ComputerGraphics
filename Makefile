@@ -4,7 +4,7 @@ CXXFLAGS?=-std=c++20 -Wall -pedantic -Werror -Wshadow -Wstrict-aliasing -Wstrict
 
 .PHONY: all msg clean fullclean
 
-all: msg main ray grid line cube life life_rot rotation
+all: msg main ray grid line cube life rotation
 
 msg:
 	@echo '--- C++11 ---'
