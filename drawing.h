@@ -17,8 +17,8 @@ void line(G& screen, tuple<int,int> start, tuple<int,int> end)
     int length = (int)(sqrt(p1*p1 + p2*p2));
     
     // angle 
-    double rad = atan(p2/p1);
-
+    double rad = atan2(p2,p1);
+    cout << rad << endl;
     for(int i = 0; i < length; i++)
     {
         screen.drawpixel(a1+cos(rad)*i, a2+sin(rad)*i);

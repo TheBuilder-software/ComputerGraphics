@@ -1,5 +1,12 @@
 #include "screen.h"
 #include "math.h"
+#include "drawing.h"
+
+/*
+150 is the centroid of this cube to get the centroid add up every value alone the x then
+divide by the number of values, do this for y and z to get he centroid, 
+this cubes centroid was 150, 150, 150 so I subtracted it from the point then added after the rotation
+*/
 
 void rotate_x(float rad, float* point)
 {
@@ -7,7 +14,7 @@ void rotate_x(float rad, float* point)
     point[0] -= 150;
     point[1] -= 150;
     point[2] -= 150;
-
+ 
     float x_1 = point[0];
     float x_2 = (cos(rad) * point[1])  - ((sin(rad) * point[2]));
     float x_3 = (sin(rad) * point[1])  + ((cos(rad) * point[2]));
@@ -54,6 +61,7 @@ void rotate_z(float rad, float* point)
 int main(int argc, char* argv[])
 {
     G screen;
+
     int center[3] = {150,150,1};
 
     float cube[8][3] = {
@@ -67,16 +75,13 @@ int main(int argc, char* argv[])
         {100,200,200},
     };
 
-
-    //float rad = 0.01;
-
     while(true)
     {
         for(int i = 0; i < 8; i++)
         {
-            rotate_x(0.01,cube[i]);
-            rotate_y(0.001,cube[i]);
-            rotate_z(0.004,cube[i]);
+            rotate_x(0.001,cube[i]);
+            rotate_y(0.01,cube[i]);
+            rotate_z(0.001,cube[i]);
             screen.drawpixel((int)cube[i][0] + center[0],(int)cube[i][1]+ center[1]);
         }
         screen.update(); 

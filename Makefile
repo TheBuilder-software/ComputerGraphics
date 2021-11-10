@@ -4,7 +4,7 @@ CXXFLAGS?=-std=c++20 -Wall -pedantic -Werror -Wshadow -Wstrict-aliasing -Wstrict
 
 .PHONY: all msg clean fullclean
 
-all: msg main ray grid line cube life rotation
+all: msg main ray grid line cube life rotation sand rotating_cube
 
 msg:
 	@echo '--- C++11 ---'
@@ -28,6 +28,12 @@ life: life.cpp
 	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
 
 rotation: rotation.cpp
+	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
+
+sand: sand.cpp
+	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
+
+rotating_cube: rotating_cube.cpp
 	${CXX} ${CXXFLAGS} -O2 -o $@ $< ${SDL2FLAGS}
 
 small: main.cpp
