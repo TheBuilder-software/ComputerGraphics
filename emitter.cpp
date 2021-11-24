@@ -1,4 +1,5 @@
 #include <chrono>
+#include <cstdlib>
 #include <iostream>
 #include <ratio>
 
@@ -11,12 +12,12 @@ using std::chrono::duration;
 class Particle {
 public:
     high_resolution_clock::time_point creation_time;
-    std::tuple<float, float> direction;
+    float direction;
     float velocity;
 
     Particle() :
         creation_time(high_resolution_clock::now()),
-        direction(sin(rand()), cos(rand())),
+        direction(2 * M_PI * rand() / RAND_MAX),
         velocity(rand() % 100) {};
 
     void draw(G &screen) {
@@ -27,8 +28,8 @@ public:
             return;
 
         screen.drawpixel(
-            static_cast<int>(distance * std::get<0>(direction) + 320),
-            static_cast<int>(distance * std::get<1>(direction) + 240)
+            static_cast<int>(distance * sin(direction) + 320),
+            static_cast<int>(distance * cos(direction) + 240)
         );
 
         if (distance > 400)
