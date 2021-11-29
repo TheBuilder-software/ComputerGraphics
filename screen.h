@@ -14,15 +14,11 @@ class G {
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_bool done;
-    int x;
-    int y;
     vector<tuple<int, int>> points;
     SDL_Event event;
     public:
     G() 
     {
-       x = 0;
-       y = 0;
        SDL_Init(SDL_INIT_VIDEO); 
        SDL_CreateWindowAndRenderer(640*2, 480*2, 0, &window, &renderer);
        SDL_RenderSetScale(renderer,2,2);
@@ -43,7 +39,6 @@ class G {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-        SDL_RenderDrawPoint(renderer, this->x, this->y);
 
         for(auto it = begin(this->points); it != end(this->points); ++it) 
         {
