@@ -4,7 +4,7 @@
 #include <time.h>  
 #include <vector>
 #include <tuple>
-
+#include <algorithm>
 #pragma once 
 
 using namespace std;
@@ -40,9 +40,9 @@ class G {
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-        for(auto it = begin(this->points); it != end(this->points); ++it) 
+        for(auto& point : this->points) 
         {
-            SDL_RenderDrawPoint(renderer, get<0>(*it),get<1>(*it));
+            SDL_RenderDrawPoint(renderer, get<0>(point),get<1>(point));
         }
 
         SDL_RenderPresent(renderer);
