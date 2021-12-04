@@ -3,7 +3,7 @@ SDL2_CFLAGS:= $(shell pkg-config sdl2 --cflags)
 SDL2_LIBS:= $(shell pkg-config sdl2 --libs)
 CXXFLAGS:= -O2 -std=c++20 -Wall -pedantic -Werror -Wshadow -Wstrict-aliasing -Wstrict-overflow
 
-BINS:= main ray grid line cube life rotation sand rotating_cube emitter
+BINS:= main ray grid line cube life rotation sand rotating_cube emitter explode
 
 .PHONY: all clean
 
