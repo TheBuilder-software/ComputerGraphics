@@ -8,7 +8,7 @@ Le update() draws pixels to screen
 Le clearpixels() clears pixels from screen
 */
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
 

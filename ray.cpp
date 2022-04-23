@@ -1,24 +1,24 @@
 #include "screen.h"
 #include "math.h"
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
     float rad = 0;
     float a[2] = {0.0,0.5};
-    float height = 55;
-    float width = 55;
+    int height = 55;
+    int width = 55;
     
     while(true) {
         for(int j = 0; j < 640; j+=width ) 
             for(int k = 0; k < 480; k+=height) 
                 for(int i = 0; i < 55; i++) {
                     
-                    int x = (int)(a[0]*i) + j;
-                    int y = (int)(a[1]*i) + k;
+                    int x = (int)(a[0] * static_cast<float>(i) ) + j;
+                    int y = (int)(a[1] * static_cast<float>(i) ) + k;
                     screen.drawpixel(x,y);      
                 }
-        rad+=0.01;
+        rad+=0.01f;
         a[0] = sin(rad);
         a[1] = cos(rad);
 

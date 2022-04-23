@@ -2,14 +2,14 @@
 #include "screen.h"
 #include "drawing.h"
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
 
-    line(screen,tuple<int,int>(100,100),tuple<int,int>(300,100));
-    line(screen,tuple<int,int>(100,300),tuple<int,int>(300,300));
-    line(screen,tuple<int,int>(100,100),tuple<int,int>(100,300));
-    line(screen,tuple<int,int>(300,100),tuple<int,int>(300,300));
+    line(screen,std::tuple<int,int>(100,100),std::tuple<int,int>(300,100));
+    line(screen,std::tuple<int,int>(100,300),std::tuple<int,int>(300,300));
+    line(screen,std::tuple<int,int>(100,100),std::tuple<int,int>(100,300));
+    line(screen,std::tuple<int,int>(300,100),std::tuple<int,int>(300,300));
 
     screen.update(); 
     screen.input();

@@ -6,6 +6,7 @@
 #include "screen.h"
 #include "math.h"
 
+using namespace std::chrono_literals;
 using std::chrono::high_resolution_clock;
 using std::chrono::duration;
 
@@ -17,8 +18,8 @@ public:
 
     Particle() :
         creation_time(high_resolution_clock::now()),
-        direction(2 * M_PI * rand() / RAND_MAX),
-        velocity(rand() % 100) {};
+        direction( static_cast<float>(2 * M_PI * rand() / RAND_MAX)),
+        velocity( static_cast<float>(rand() % 100)) {};
 
     void draw(G &screen) {
         float distance =
@@ -37,7 +38,7 @@ public:
     }
 };
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
     std::array<Particle, 5000> particles;

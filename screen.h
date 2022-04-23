@@ -7,14 +7,15 @@
 #include <algorithm>
 #pragma once 
 
-using namespace std;
-
+/**
+ *  \brief Creates a 640 by 480 window for rendering 
+ */
 class G {
 
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_bool done;
-    vector<tuple<int, int>> points;
+    std::vector<std::tuple<int, int>> points;
     SDL_Event event;
     public:
     G() 
@@ -26,8 +27,7 @@ class G {
 
     void drawpixel(int xm, int ym) 
     {
-        tuple<int,int> t = tuple<int,int>(xm,ym);
-        points.push_back( t );
+        points.emplace_back( std::tuple<int,int>(xm,ym) );
     }
     void clearpixels()
     {
@@ -42,23 +42,19 @@ class G {
 
         for(auto& point : this->points) 
         {
-            SDL_RenderDrawPoint(renderer, get<0>(point),get<1>(point));
+            SDL_RenderDrawPoint(renderer, std::get<0>(point), std::get<1>(point));
         }
-
         SDL_RenderPresent(renderer);
     }
+
     void input() {
         while( SDL_PollEvent( &event ) )
         {  
             switch( event.type )
             {
-                /* SDL_QUIT event (window close) */
-                case SDL_QUIT:
-                    SDL_Quit();
-                    exit(0);
-                    break;
-
-                default:
+                case SDL_QUIT: 
+                    SDL_Quit(); 
+                    exit(0); 
                     break;
             }
         }

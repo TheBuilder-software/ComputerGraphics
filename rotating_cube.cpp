@@ -23,7 +23,7 @@ void rotate(double* point, double x = 1, double y = 1, double z = 1)
     point[2] = point[2];
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
 
@@ -70,15 +70,10 @@ int main(int argc, char* argv[])
         {
             int beginningLine = lines[i][0];
             int endLine = lines[i][1];
-            line(screen,make_tuple(
-                            cube[beginningLine][0]+ center[0],
-                            cube[beginningLine][1]+ center[1]
-                        ), 
-                        make_tuple(
-                            cube[endLine][0]+ center[0], 
-                            cube[endLine][1]+ center[1]
-                        )
-                );
+            line(screen,
+                std::make_tuple(cube[beginningLine][0]+ center[0], cube[beginningLine][1]+ center[1] ), 
+                std::make_tuple(cube[endLine][0]+ center[0], cube[endLine][1]+ center[1])
+            );
         }
 
         screen.update(); 

@@ -59,8 +59,7 @@ void random_move(Sand& s)
 
 }
 
-
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
     vector<Sand> world; 

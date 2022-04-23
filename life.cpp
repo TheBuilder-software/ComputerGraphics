@@ -8,7 +8,7 @@ bool isAlive(int game[][480], int x, int y)
     {
         aliveNeighbors += 1;
     }
-    if(x < 640 && game[x+1][y] == 1) // right
+    if(x < 639 && game[x+1][y] == 1) // right
     {
         aliveNeighbors += 1;
     }
@@ -16,7 +16,7 @@ bool isAlive(int game[][480], int x, int y)
     {
         aliveNeighbors += 1;
     }
-    if(y < 480 && game[x][y+1] == 1) // bottom
+    if(y < 479 && game[x][y+1] == 1) // bottom
     {
         aliveNeighbors += 1;
     }
@@ -24,15 +24,15 @@ bool isAlive(int game[][480], int x, int y)
     {
         aliveNeighbors += 1;
     }
-    if(y > 0 && x < 640 && game[x+1][y-1] == 1) // top right
+    if(y > 0 && x < 639 && game[x+1][y-1] == 1) // top right
     {
         aliveNeighbors += 1;
     }
-    if(y < 480 && x > 0 && game[x-1][y+1] == 1) // bot left
+    if(y < 479 && x > 0 && game[x-1][y+1] == 1) // bot left
     {
         aliveNeighbors += 1;
     }
-    if(y < 480 && x < 640 && game[x+1][y+1] == 1) // bot right
+    if(y < 479 && x < 639 && game[x+1][y+1] == 1) // bot right
     {
         aliveNeighbors += 1;
     }
@@ -50,7 +50,7 @@ bool isAlive(int game[][480], int x, int y)
 }
 
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
     int game[640][480];
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
         float fi = (float)i/100;
         for(int j = 1; j < 20; j++)
         {
-            float s = sin(fi) * j + 200;
+            float s = sin(fi) * static_cast<float>(j) + 200;
             game[i][(int)s] = 1;
         }
     }

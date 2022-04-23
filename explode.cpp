@@ -13,13 +13,13 @@ public:
     int id = 0;
     Sand(float x, float y, int life, float dx, float dy, float vel,int uid) 
     {
-        this->position_x = x;
-        this->position_y = y;
-        this->alivefor = life;
-        this->direction_x = dx;
-        this->direction_y = dy;
-        this->velocity = vel;
-        this->id = uid;
+        position_x = x;
+        position_y = y;
+        alivefor = life;
+        direction_x = dx;
+        direction_y = dy;
+        velocity = vel;
+        id = uid;
     }
     void update()
     {
@@ -53,11 +53,11 @@ class Explosion{
     int id;
     G* screen;
     Explosion(float x, float y, int lifetime, int uid, G* scr):
-    position_x(x),
-    position_y(y),
-    life(lifetime),
-    id(uid),
-    screen(scr){}
+        position_x(x),
+        position_y(y),
+        life(lifetime),
+        id(uid),
+        screen(scr){}
 
     void update()
     {
@@ -65,14 +65,14 @@ class Explosion{
             float d = 0.0;
             for(int i = 0; i < 63; i++) 
             {
-                this->screen->drawpixel(
-                    sin(d) * this->size + this->position_x, 
-                    cos(d) * this->size + this->position_y
+                screen->drawpixel(
+                    static_cast<int>(sin(d)) * size + static_cast<int>(position_x) , 
+                    static_cast<int>(cos(d)) * size + static_cast<int>(position_y)
                 );
-                d+=0.1;
+                d+=0.1f;
             }
-            this->size += 1;
-            this->life -= 1;
+            size += 1;
+            life -= 1;
         }
     }
 
@@ -93,29 +93,29 @@ bool areColiding(Sand& rhs, Sand& lhs)
     }
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
-    vector<Sand> world; 
-    vector<Explosion> world_explosions;
+    std::vector<Sand> world; 
+    std::vector<Explosion> world_explosions;
     // create all particles with random values
     //
     for(int i = 0; i < 100; i++)
         world.push_back(Sand(
-           rand()%640,
-           rand()%480,
+           static_cast<float>(rand()%640),
+           static_cast<float>(rand()%480),
            -1,
-           sin(rand()),
-           cos(rand()), 
+           static_cast<float>(sin(rand())),
+           static_cast<float>(cos(rand())), 
            ((float)(rand() % 100) )/55,
-           i )           
+           i)           
         );
     
     while(true)
     {
         for(auto& w : world) 
         {
-            screen.drawpixel(w.position_x, w.position_y);
+            screen.drawpixel(static_cast<int>(w.position_x), static_cast<int>(w.position_y));
             if(w.velocity > 0)
             {
                 w.update();

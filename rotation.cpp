@@ -58,7 +58,7 @@ void rotate_z(float rad, float* point)
     point[2] = x_3+150;
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
 
@@ -79,9 +79,9 @@ int main(int argc, char* argv[])
     {
         for(int i = 0; i < 8; i++)
         {
-            rotate_x(0.001,cube[i]);
-            rotate_y(0.01,cube[i]);
-            rotate_z(0.001,cube[i]);
+            rotate_x(0.001f,cube[i]);
+            rotate_y(0.01f,cube[i]);
+            rotate_z(0.001f,cube[i]);
             screen.drawpixel((int)cube[i][0] + center[0],(int)cube[i][1]+ center[1]);
         }
         screen.update(); 

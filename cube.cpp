@@ -5,14 +5,14 @@
 
 void square(G& screen, int position_x, int position_y, int size)
 {
-    line(screen,tuple<int,int>(position_x,position_y),tuple<int,int>(position_x+size,position_y));
-    line(screen,tuple<int,int>(position_x,position_y+size),tuple<int,int>(position_x+size+1,position_y+size));
-    line(screen,tuple<int,int>(position_x,position_y),tuple<int,int>(position_x,position_y+size));
-    line(screen,tuple<int,int>(position_x+size,position_y),tuple<int,int>(position_x+size,position_y+size));
+    line(screen,std::tuple<int,int>(position_x,position_y),     std::tuple<int,int>(position_x+size,position_y));
+    line(screen,std::tuple<int,int>(position_x,position_y+size),std::tuple<int,int>(position_x+size+1,position_y+size));
+    line(screen,std::tuple<int,int>(position_x,position_y),     std::tuple<int,int>(position_x,position_y+size));
+    line(screen,std::tuple<int,int>(position_x+size,position_y),std::tuple<int,int>(position_x+size,position_y+size));
 
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
 
