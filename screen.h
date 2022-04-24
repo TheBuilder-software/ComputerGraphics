@@ -4,8 +4,11 @@
 #include <time.h>  
 #include <vector>
 #include <tuple>
-#include <algorithm>
-#pragma once 
+#include <algorithm> 
+#include <utility>
+#include <numeric>
+
+#pragma once
 
 /**
  *  \brief Creates a 640 by 480 window for rendering 
@@ -21,17 +24,25 @@ class G {
     G() 
     {
        SDL_Init(SDL_INIT_VIDEO); 
-       SDL_CreateWindowAndRenderer(640*2, 480*2, 0, &window, &renderer);
-       SDL_RenderSetScale(renderer,2,2);
+       SDL_CreateWindowAndRenderer(640*4, 480*4, 0, &window, &renderer);
+       SDL_RenderSetScale(renderer,4,4);
+    }
+    ~G()
+    {
+        SDL_DestroyWindow(window);
+        SDL_DestroyRenderer(renderer);
+        SDL_Quit();
     }
 
     void drawpixel(int xm, int ym) 
     {
-        points.emplace_back( std::tuple<int,int>(xm,ym) );
+        xm = std::clamp(xm,0,640-1);
+        ym = std::clamp(ym,0,480-1);
+        points.push_back( std::tuple<int,int>(xm,ym) );
     }
     void clearpixels()
     {
-        this->points.clear();
+        points.clear();
     }
 
     void update() {
@@ -40,7 +51,7 @@ class G {
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-        for(auto& point : this->points) 
+        for(auto& point : points) 
         {
             SDL_RenderDrawPoint(renderer, std::get<0>(point), std::get<1>(point));
         }

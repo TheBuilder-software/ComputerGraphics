@@ -77,10 +77,12 @@ int main()
     }
 
     // Update
+    //
     while(true)
     {
 
         // Calculate
+        //
         for(int i = 0; i < 640; i+=1)
         {
             for(int k = 0; k < 480; k+=1)
@@ -97,6 +99,7 @@ int main()
         }
 
         // Draw
+        //
         for(int i = 0; i < 640; i+=1)
         {
             for(int k = 0; k < 480; k+=1)
@@ -109,6 +112,7 @@ int main()
         }
         
         // Swap
+        //
         for(int i = 0; i < 640; i+=1)
         {
             for(int k = 0; k < 480; k+=1)

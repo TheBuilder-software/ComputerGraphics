@@ -8,6 +8,7 @@ class Sand{
     int id;
     int y_move_dir;
     int x_move_dir;
+
     Sand(int x, int y, int sid) 
     {
         position_x = x;
@@ -17,47 +18,74 @@ class Sand{
         x_move_dir = 0;
     }
 
-};
-
-bool isColliding(Sand& s, std::vector<Sand>& world)
-{
-    if(s.position_y > 350) return true;
-
-    for(Sand& sand : world)
+    bool isColliding(Sand& s, std::vector<Sand>& world)
     {
-        
-        if( sand.position_x == s.position_x && 
-            sand.position_y == s.position_y && 
-            sand.id != s.id)
+        if(s.position_y > 350) return true;
+
+        for(Sand& sand : world)
         {
-            return true;
-        }
             
+            if( sand.position_x == s.position_x && 
+                sand.position_y == s.position_y && 
+                sand.id != s.id)
+            {
+                return true;
+            }
+                
+        }
+        return false;
     }
-    return false;
-}
-void random_move(Sand& s)
-{
-    int d = rand() % 4;
+    void update(std::vector<Sand>& world)
+    {       meme:
+            position_y += 1;
+            if(isColliding(*this,world))
+            {
+                position_y -= 1;
+            }
+            else 
+            {
+                return;
+            }
 
+            if(rand()%2==0) 
+            {
+                // down left
+                //
+                position_y += 1;
+                position_x -= 1;
+                if(isColliding(*this,world))
+                {
+                    position_y -= 1;
+                    position_x += 1;
+                } 
+                else 
+                {
+                    return;
+                }
+            }
+            else 
+            {
+                // down right
+                //
+                position_y += 1;
+                position_x += 1;
+                if(isColliding(*this,world))
+                {
+                    position_y -= 1;
+                    position_x -= 1;
+                } 
+                else 
+                {
+                    return;
+                }
+            }
+            if(isColliding(*this,world))
+            {
+                goto meme;
+            }
 
-    switch(d)
-    {
-        case 0:
-        s.position_x += 1;
-        break;
-        case 1:
-        s.position_x -= 1;
-        break;
-        case 3:
-        s.position_y += 1;
-        break;
-        case 4: 
-        s.position_y -= 1;
-        break;
     }
-
-}
+};
 
 int main()
 {
@@ -67,66 +95,36 @@ int main()
     int id = 0;
     while(true)
     {
+
         // Add sand to world
-        if(rand()%2 == 0)
+        //
+        if(rand()%2 == 0 and world.size() < 500)
         {
-            world.emplace_back(320,240,id);
+            world.emplace_back(320 + rand()%10-5,240,id);
             id = rand();
         }
 
+        // Update sand
+        //
         for(Sand& s : world)
         {
-
-            // down
-            s.position_y += 1;
-            if(isColliding(s,world))
-            {
-                s.position_y -= 1;
-            }
-            else 
-            {
-                continue;
-            }
-            if(rand()%2==0) 
-            {
-                // down left
-                s.position_y += 1;
-                s.position_x -= 1;
-                if(isColliding(s,world))
-                {
-                    s.position_y -= 1;
-                    s.position_x += 1;
-                } 
-                else 
-                {
-                    continue;
-                }
-            }
-            else 
-            {
-                // down right
-                s.position_y += 1;
-                s.position_x += 1;
-                if(isColliding(s,world))
-                {
-                    s.position_y -= 1;
-                    s.position_x -= 1;
-                } 
-                else 
-                {
-                    continue;
-                }
-            }
+            s.update(world);
         }
+
         // Render sand
+        //
         for(auto& s: world)
+        {
             screen.drawpixel(s.position_x,s.position_y);
+        }
 
         screen.update();
         SDL_Delay(20);
         screen.input();
         screen.clearpixels();
+    
     }
+
     return 0;
 }
 

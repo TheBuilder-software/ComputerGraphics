@@ -1,7 +1,7 @@
 #include "screen.h"
 #include "math.h"
 
-int main(int argc, char* argv[])
+int main()
 {
     G screen;
     float rad = 0;
@@ -10,16 +10,16 @@ int main(int argc, char* argv[])
     float width = 100;
     
     while(true) {
-        for(int j = 0; j < 640; j+=width ) 
-            for(int k = 0; k < 480; k+=height) 
-                for(int i = 0; i < 100; i++) {
+        for(float j = 0; j < 640; j+=width ) 
+            for(float k = 0; k < 480; k+=height) 
+                for(float i = 0; i < 100; i++) {
                     
-                    int x = (int)(a[1]*i) + j;
-                    int y = (int)(a[0]*i) + k;
+                    int x = static_cast<int>((a[1]*i) + j);
+                    int y = static_cast<int>((a[0]*i) + k);
                     
                     screen.drawpixel(x,y); 
                 }
-        rad+=0.005;
+        rad+=0.005f;
         //a[0] = sin(rad);
         a[1] = cos(rad);
 

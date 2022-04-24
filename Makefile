@@ -1,9 +1,9 @@
 CXX:= g++
 SDL2_CFLAGS:= $(shell pkg-config sdl2 --cflags)
 SDL2_LIBS:= $(shell pkg-config sdl2 --libs)
-CXXFLAGS:= -g -O0 -std=c++20 -Wall -Wextra -pedantic -Werror -Wshadow -Wconversion -fsanitize=address -fmax-errors=3
+CXXFLAGS:= -g -O0 -std=c++20 -Wall -Wextra -pedantic -Werror -Wshadow -Wconversion -fmax-errors=3 -fsanitize=address
 
-BINS:= main ray grid line cube life rotation sand rotating_cube emitter explode
+BINS:= main ray grid line cube life rotation sand rotating_cube emitter explode ray_rot scrolling
 
 .PHONY: all clean
 

@@ -7,10 +7,10 @@ const int SCREEN_HEIGHT = 1000;
 const int SCREEN_WIDTH = 1000;
 
 /* Moving Rectangle */
-int main(int argc, char *argv[])
+int main()
 {
         SDL_Event event;
-        SDL_Rect r{0,0,50,100};
+        //SDL_Rect r{0,0,50,100};
         SDL_Rect canvas{0,0,500,500};
         double angle = 0;
         SDL_Init(SDL_INIT_EVERYTHING);
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         for(int i = 0; i < 10000; i++)                                    // draw a bunch of pixels
         {
             // set draw color
-            SDL_SetRenderDrawColor(renderer,rand()%255,rand()%255,rand()%255,255);
+            SDL_SetRenderDrawColor(renderer,255,255,255,255);
             SDL_RenderDrawPoint(renderer,rand()%10000, rand()%10000);
         }
         
