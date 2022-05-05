@@ -33,16 +33,16 @@ int main()
             if(iters == 0)
             {
                 SDL_SetRenderDrawColor(renderer,0,0,0,255);
-                SDL_RenderDrawPointF(renderer, x * 1000,  y * 1000);
+                SDL_RenderDrawPointF(renderer, static_cast<float>(x * 1000.0),  static_cast<float>(y * 1000.0));
             }
             else{
                 SDL_SetRenderDrawColor(
                     renderer,
-                    3 * iters % 255,
-                    3 * iters % 255,
-                    3 * iters % 255,
+                    static_cast<Uint8>(3 * iters % 255),
+                    static_cast<Uint8>(3 * iters % 255),
+                    static_cast<Uint8>(3 * iters % 255),
                     255);
-                SDL_RenderDrawPointF(renderer, x * 1000, y * 1000);
+                SDL_RenderDrawPointF(renderer, static_cast<float>(x * 1000.0), static_cast<float>(y * 1000.0));
             }
         }
 
