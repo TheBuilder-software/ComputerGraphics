@@ -49,8 +49,6 @@ public:
 
 int main()
 {
-    G* screen2 = new G;
-    screen2->drawpixel(1,1);
     G screen;
     std::array<Particle, 5000> particles;
 
@@ -66,7 +64,6 @@ int main()
 
         screen.update(); 
         screen.input();
-        screen2->input();
         screen.clearpixels();
         SDL_Delay(16);
     }
