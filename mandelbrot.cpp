@@ -5,7 +5,7 @@
 int is_in_set(std::complex<double> c)
 {
     std::complex<double> z(0,0);
-    for(int i = 0; i < 250; i++)
+    for(int i = 0; i < 2500; i++)
     {
         z = std::pow(z,2) + c;
         if(std::norm(z) > 10)
