@@ -1,6 +1,6 @@
 # Intro
 
-Here's a list a bunch of mini programs written in SDL2. 
+Here's a bunch of mini programs written in SDL2. 
 
 # Build
 
