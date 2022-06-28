@@ -1,6 +1,23 @@
 #include "screen.h"
 #include "math.h"
 
+
+class Point
+{
+    SDL_FPoint position;
+    SDL_FPoint direction;
+    int alive_for;
+    float velocity;
+    int id = 0;
+    Point()
+    {
+        position.x = static_cast<float>(rand() % 640);
+        position.y = static_cast<float>(rand() % 480);
+        alive_for = 999999;
+        velocity = 1;
+    }
+};
+
 class Sand{
 
 public:
@@ -11,6 +28,7 @@ public:
     float direction_y;
     float velocity;
     int id = 0;
+
     Sand(float x, float y, int life, float dx, float dy, float vel,int uid) 
     {
         position_x = x;
@@ -21,6 +39,7 @@ public:
         velocity = vel;
         id = uid;
     }
+
     void update()
     {
         this->position_x +=  (this->direction_x * this->velocity);
@@ -98,7 +117,8 @@ int main()
     G screen;
     std::vector<Sand> world; 
     std::vector<Explosion> world_explosions;
-    // create all particles with random values
+
+    // Create all particles with random values
     //
     for(int i = 0; i < 100; i++)
         world.push_back(Sand(
@@ -111,8 +131,11 @@ int main()
            i)           
         );
     
+    // Main loop
     while(true)
     {
+        // Draw and update all objects
+        //
         for(auto& w : world) 
         {
             screen.drawpixel(static_cast<int>(w.position_x), static_cast<int>(w.position_y));
@@ -121,28 +144,26 @@ int main()
                 w.update();
             }
         }
+
+        // Draw and update all explosions
+        //
         for(auto& w : world_explosions) 
         {
             w.update();
         }
 
         // process particles
+        //
         for(auto& w : world) 
             for(auto& m : world)
                 if((m.velocity > 0 || w.velocity > 0) && areColiding(m,w))
                 {
-                    for(int i = 0; i < 665; i++)
-                    {
-                        world_explosions.push_back(Explosion(
-                            w.position_x,w.position_y,60,rand(),&screen
-                        ));
-                    }
+                    world_explosions.push_back(Explosion( w.position_x,w.position_y,60,rand(),&screen ));
                     m.velocity = 0;
                     w.velocity = 0;
                 }
 
         // process explosions
-
 
         screen.update();
         SDL_Delay(20);
